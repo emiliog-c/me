@@ -173,12 +173,14 @@ def loops_5():
     you'll come to see the pros and cons of each over time.
     """
     bruh = []
+    bruh2 = []
     for j in range(10):
-        dole = []
         for k in range(5):
-            bruh.append("(i{j1}".format(j1 = (str((j)))) + ", " + "j{j2}), ".format(j2 = (str((k)))))
-        dole.append(bruh)
-    return dole
+            bruh.append("(i" + str(j) + ", " + "j"+str(k)+")")
+        bruh2.append(bruh)
+        bruh = []
+
+    return bruh2
 
 
 def loops_6():
