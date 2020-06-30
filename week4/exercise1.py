@@ -162,7 +162,7 @@ def diarist():
 
     print(number)
 
-    lader = open(LOCAL + "/laser.pew", "w")
+    lader = open(LOCAL + "/lasers.pew", "w")
     lader.write(str(number))
     lader.close
 
