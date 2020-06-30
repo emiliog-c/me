@@ -12,7 +12,13 @@ def loop_ranger(start, stop=None, step=1):
     The look up the docs for range(), you can answer this with just the range 
     function, but we'd like you to do it the long way, probably using a loop.
     """
-    return None
+    numbers = []
+    y = start
+    while y < stop:
+        numbers.append(y)
+        y = y + step
+
+    return numbers
 
 
 def lone_ranger(start, stop, step):
@@ -20,7 +26,12 @@ def lone_ranger(start, stop, step):
 
     Look up the docs for range() and wrap it in a 1:1 way
     """
-    return None
+    nom = []
+    while start < stop:
+        nom.append(start)
+        start = start + step
+    
+    return nom
 
 
 def two_step_ranger(start, stop):
@@ -29,7 +40,14 @@ def two_step_ranger(start, stop):
     Sometimes you want to hide complexity.
     Make a range function that always has a step size of 2
     """
-    return None
+    a1 = start
+    a2 = stop
+    a3 = 2
+    step_range = []
+    for number in range (a1, a2, a3):
+        step_range.append(number)
+
+    return step_range
 
 
 def stubborn_asker(low, high):
@@ -40,7 +58,18 @@ def stubborn_asker(low, high):
 
     Look up the docs for input
     """
-    return None
+    duh = int(input("What number is between low and high? "))
+    while not (low < duh < high):
+        if duh < low:
+            print ('Higher.')
+        if duh > high:
+            print ('Lower')
+        if duh > low and duh < high:
+            print ("nah")
+            return duh
+        duh = int(input("What number is between low and high? "))
+  
+    return duh
 
 
 def not_number_rejector(message):
@@ -50,7 +79,13 @@ def not_number_rejector(message):
     (e.g. "cow", "six", "8!") then throw it out and ask for an actual number.
     When you do get a number, return it.
     """
-    return None
+    exe1 = input("What number is between low and high? ")
+    while not exe1.isdigit():
+        exe1 = input(message)
+        return exe1
+
+    return exe1
+    
 
 
 def super_asker(low, high):
@@ -61,7 +96,25 @@ def super_asker(low, high):
     Try to call at least one of the other functions to minimise the
     amount of code.
     """
-    return None
+    message = ("put a number ")
+    tf = False
+    exe2 = input("What number is between low and high? ")
+    while tf != True:
+        while not exe2.isdigit():
+            exe2 = input("bruh ")
+            return exe2
+            while not (low < exe2 < high):
+                if exe2 < low:
+                    print ('Higher.')
+                if exe2 > high:
+                    print ('Lower')
+                if exe2 > low and exe2 < high:
+                    print ("nah")
+                    tf = True
+                    return exe2
+        
+
+    return exe2
 
 
 if __name__ == "__main__":

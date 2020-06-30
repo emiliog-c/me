@@ -29,6 +29,40 @@ def advancedGuessingGame():
     return "You got it!"
     # the tests are looking for the exact string "You got it!". Don't modify that!
 
+    def lowerFunc():
+      lowerBound = input("Smallest number of the range: ")
+      while not lowerBound.isdigit():
+        lowerBound = int(input("Please Input a number: "))
+        return lowerBound
+      return lowerBound
+      
+
+    def higherFunc():
+      higherBound = input("Highest Number of the range: ")
+      while not higherBound.isdigit():
+        higherBound = int(input("Please Input a number: "))
+        return higherBound
+      return higherBound
+      
+
+    def fullFunc():
+      tf = False
+      lowz = lowerFunc()
+      highz = higherFunc()
+      realNum = random.randint(int(lowz), int(highz))
+      while tf != True:
+        guess = int(input("Guess a number between: " + (lowz) + " and " + (highz) + " "))
+        print("You guessed {}".format(guess))
+        if guess == realNum:
+          print ("You got it!")
+          tf = True
+        elif guess < realNum:
+          print ("Too small")
+        else:
+          print ("Too large")
+      return "You got it!"
+
+
 
 if __name__ == "__main__":
     print(advancedGuessingGame())

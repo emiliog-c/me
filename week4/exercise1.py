@@ -34,9 +34,18 @@ def get_some_details():
          dictionaries.
     """
     json_data = open(LOCAL + "/lazyduck.json").read()
-
+    print (json_data)
     data = json.loads(json_data)
-    return {"lastName": None, "password": None, "postcodePlusID": None}
+    j1 = int(data["results"][0]["location"]["postcode"])
+    j2  = int(data["results"][0]["id"]["value"])
+    romain = {
+        "lastName": (data["results"][0]["name"]["last"]),
+        "password": (data["results"][0]["login"]["password"]),
+        "postcodePlusID": ((j1) + (j2))
+    }
+    
+
+    return {"lastName": (data["results"][0]["name"]["last"]), "password": (data["results"][0]["login"]["password"]), "postcodePlusID": ((j1) + (j2))}
 
 
 def wordy_pyramid():
@@ -74,7 +83,24 @@ def wordy_pyramid():
     ]
     TIP: to add an argument to a URL, use: ?argName=argVal e.g. &minLength=
     """
-    pass
+    import requests
+    k1 = 1
+    url = "https://api.jsonbin.io/b/5ef72ae72406353b2e0da41a/6"
+    headers = {
+        'Content-Type': 'application/json',
+        'secret-key': '$2b$10$LGTJXy36.7KytJw23NsMeuEgym0.dR0EwhaK/IwXxPQ1uKMawJJqK'
+        }
+    x = requests.get(url, headers=headers)
+    pyramid = []
+    while k1 != 19:
+        data = x.json()
+        #print (data["bin"][0]["word1"])
+        ayy = (data["bin"][0]["word{j1}".format(j1 = (k1))])
+        pyramid.append(ayy)
+        k1 = k1 + 1
+        print (pyramid)
+
+    return pyramid
 
 
 def pokedex(low=1, high=5):
@@ -91,13 +117,27 @@ def pokedex(low=1, high=5):
          get very long. If you are accessing a thing often, assign it to a
          variable and then future access will be easier.
     """
+    
     template = "https://pokeapi.co/api/v2/pokemon/{id}"
+    tall_pkmn = 0
+    bruh = []
+    for i in range (low, high):
+        url = template.format(id=i)
+        j = requests.get(url)
+        if j.status_code is 200:
+            the_json = json.loads(j.text)
+            bruh.append(the_json)
+    
+    for l in bruh:
+        height = l["height"]
+        if height > tall_pkmn:
+            tall_pkmn = height
+            name_1 = l["name"]
+            weight_1 = l["weight"]
+            height_1 = l["height"]
+ 
 
-    url = template.format(id=5)
-    r = requests.get(url)
-    if r.status_code is 200:
-        the_json = json.loads(r.text)
-    return {"name": None, "weight": None, "height": None}
+    return {"name": name_1, "weight": weight_1, "height": height_1}
 
 
 def diarist():
@@ -114,7 +154,22 @@ def diarist():
          the test will have nothing to look at.
     TIP: this might come in handy if you need to hack a 3d print file in the future.
     """
-    pass
+    lazor = open(LOCAL + "/Trispokedovetiles(laser).gcode", "r")
+    number = 0
+    for line in lazor:
+        if "M10 P1" in line:
+            number += 1
+
+    print(number)
+
+    lader = open(LOCAL + "/laser.pew", "w")
+    lader.write(str(number))
+    lader.close
+
+    return lader
+
+
+    
 
 
 if __name__ == "__main__":

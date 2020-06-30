@@ -3,6 +3,7 @@
 
 
 import math
+import bisect
 # import time
 
 
@@ -23,9 +24,36 @@ def binary_search(low, high, actual_number):
     Use the VS Code debugging tools a lot here. It'll make understanding 
     things much easier.
     """
-    tries = 0
-    guess = 0
-    return {"guess": guess, "tries": tries}
+    ai = low
+    ae = high
+    ad = (actual_number)
+    arr = list(range (ai, ae))
+    def wack(arr, ai, ae, ad):
+        tries = 0
+        guess = 0
+        df = False
+        while df != True:
+            if ai >= 1:
+                mid = ai + (ae - ai)//2
+                if arr[mid] == ad:
+                    print (mid)
+                    guess = mid
+                    print (guess)
+                    print (tries)
+                    df = True
+                    return mid
+
+                elif arr[mid] > ad:
+                    wrongguess = (mid)
+                    print (wrongguess)
+                    tries = tries + 1
+                    return wack(arr, ai, mid-1, ad)
+                else:
+                    wrongguess2 = (mid)
+                    print (wrongguess2)
+                    tries = tries + 1
+                    return wack(arr, ae, mid+1, ad)
+        return {"guess": guess, "tries": tries}
 
 
 if __name__ == "__main__":
