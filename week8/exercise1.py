@@ -255,7 +255,7 @@ def fast_filler(number_of_words=200):
 
     # Keep presets
     words = []
-    test = make_filler_text_dictionary()
+    test = {3: ['iof', 'ead', 'zac'], 4: ['yont', 'iiwi', 'qadi'], 5: ['ygapo', 'yonic', 'yaply'], 6: ['yodels', 'ipecac', 'ygerne'], 7: ['iffiest', 'ipocras', 'ipomoea']}
     fname = "dict_racey.json"
     path = (r"C:\Users\Emilio\1161\me\dict_racey.json")
     exists = os.path.isfile(path)
