@@ -51,13 +51,10 @@ def do_bunch_of_bad_things():
     pass
 def countdown(message, start, stop, completion_message):
     cd = []
-    for i in range (start, stop):
-        ce = ((message) + (i))
-        cd.append(ce)
-        print(ce)
-    cd.append(completion_message)
-    cd.append("AHHHH")
-    print((cd))
+    while start != (stop - 1):
+        print((message) + " " + str(start))
+        start = start - 1
+    print(completion_message)
     return cd
 
 
@@ -172,11 +169,19 @@ def tell_me_about_this_right_triangle(facts_dictionary):
         "This triangle is {area}{units}²\n"
         "It has a perimeter of {perimeter}{units}\n"
         "This is a {aspect} triangle.\n"
-    )
+    ).format(area=facts_dictionary["area"], 
+            units=facts_dictionary["units"],
+            aspect=facts_dictionary["aspect"],
+            perimeter=facts_dictionary["perimeter"])
+    if facts_dictionary["aspect"] == "tall":
+        return tall + pattern
+    elif facts_dictionary["aspect"] == "equal":
+        return equal + pattern
+    else:
+        return wide+pattern
 
-    facts = pattern.format(
-        **facts_dictionary
-    )  # **dictionary unpacks the key value pairs
+   
+      # **dictionary unpacks the key value pairs
 
 
 def triangle_master(base, height, return_diagram=False, return_dictionary=False):

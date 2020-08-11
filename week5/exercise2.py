@@ -91,6 +91,16 @@ def abba(source="abba", guard=3):
     aobaobbbabbaoaaobbbaoaaobaobaobbba
                 and so on...
     """
+    guard = int(guard)
+    for i in range(guard, 0, -1):
+         source = source.replace('o', '@')
+         source = source.replace('a', '$')
+         source = source.replace('b', '#')
+         source = source.replace('$', 'bba')
+         source = source.replace('#', 'aob')
+         source = source.replace('@', 'oa')
+    return source
+
     def apply_rules(letter, guard):
         """Control the substitution.
 
@@ -98,19 +108,33 @@ def abba(source="abba", guard=3):
 
         Hint: when guard == -1 return the letter.
         """
-        while guard != -1:
-            if letter == "a":
-                return "bba"
-            elif letter == "b":
-                return "aob"
-            elif letter == "o":
-                return "oaa"
-            else:
-                return letter
+
+        if letter == "a":
+            return "*"
+        elif letter == "b":
+            return "("
+        elif letter == "o":
+            return ")"
+        elif letter == "*":
+            return "bba"
+        elif letter == "(":
+            return "aob"
+        elif letter == ")":
+            return "oa"
+        else:
+            return letter
+        
         
 
     # write the rest of the function here
-
+    new_list = [(source)]
+    result = [apply_rules(part, guard) for part in new_list]
+    final = " ".join(result)
+    guard = guard - 1
+    if guard > 0:
+        return abba(final, guard)
+    else:
+        return final
 
 
 
@@ -156,8 +180,21 @@ def square_koch(t, order, size):
     """
     trace = ""
     # write the rest of the function here.
+    if order != 0: 
+        trace += square_koch(t, order-1, size)  
+        t.left(90)
+        trace += square_koch(t, order-1, size)
+        t.right(90)
+        trace += square_koch(t, order-1, size)
+        t.right(90)
+        trace += square_koch(t, order-1, size)
+        t.left(90)
+        trace += square_koch(t, order-1, size)         
+    else:
+        t.forward(size)
+        
     return str(order) + trace
-    pass
+
 
 
 def draw_square(steps=4):
